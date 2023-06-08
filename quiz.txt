@@ -1,0 +1,10 @@
+1) Unit Testing => Test per part of the code. Test the output or process done by methods.
+2) Integration Test => test connected parts of the code. Test if other methods or class can access or received output from other parts.
+3) System Test => check compliance of the whole program with regards to requirements.
+4) Acceptance => testing done by the end user or the customer. Acceptance from the user requirements.
+5) False
+6) Jupiter
+7) Assertions.assertEquals(); => check if output is same as expected value
+8) Assertions.assertNotNull(); => check if output is not Null or has content
+9) Assertions.assertFalse(); => check if output is boolean false
+10) Assertions.assertNull(); => check if output is Null or has ben deleted/removed
