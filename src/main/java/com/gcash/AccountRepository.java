@@ -3,7 +3,6 @@ package com.gcash;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import java.util.function.Predicate;
 
 public class AccountRepository {
     private final List<Account> accounts = new ArrayList<>();
@@ -25,13 +24,6 @@ public class AccountRepository {
                 .findFirst()
                 .orElse(null);
 
-//
-//        for (Account account : accounts) {
-//            if (account.id().equals(id)) {
-//                return account;
-//            }
-//        }
-//        return null;
     }
 
     public void deleteAccount(String id) {
@@ -41,15 +33,25 @@ public class AccountRepository {
                 .findFirst()
                 .ifPresent(accounts::remove);
 
-//        for (Account account : accounts) {
-//            if (account.id().equals(id)) {
-//                accounts.remove(account);
-//                return;
-//            }
-//        }
+    }
+
+    public void setBalance(String id, Double newBalance) {
+        int ctr =0;
+        for (Account account : accounts){
+            if (account.id().equals(id)) {
+                Account updatedAccount = new Account(id, account.name(), newBalance);
+                accounts.set(ctr, updatedAccount);
+            }
+            ctr++;
+        }
     }
 
     public Integer getNumberOfAccounts() {
         return accounts.size();
+
+    }
+
+    public boolean noRegisteredAccount() {
+        return accounts.isEmpty() ;
     }
 }

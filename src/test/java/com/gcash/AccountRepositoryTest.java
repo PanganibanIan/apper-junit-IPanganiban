@@ -27,6 +27,7 @@ public class AccountRepositoryTest {
         Assertions.assertEquals("Orvyl", repository.getAccount(accountId).name());
         Assertions.assertEquals(89.9, repository.getAccount(accountId).balance());
         Assertions.assertNull(repository.getAccount("randomid")) ;
+
     }
 
     @Test
@@ -43,10 +44,10 @@ public class AccountRepositoryTest {
     void successfulGetNumberOfAccounts() {
         //Setup and Kick
         AccountRepository repository = new AccountRepository();
-        String id0 = repository.createAccount("Orvyl", 89.9);
-        String id1 = repository.createAccount("Orvyl", 89.9);
-        String id2 = repository.createAccount("Orvyl", 89.9);
-        String id3 = repository.createAccount("Orvyl", 89.9);
+        String id0 = repository.createAccount("Orvyl", 400.4);
+        String id1 = repository.createAccount("Ian", 300.3);
+        String id2 = repository.createAccount("Patrick", 200.2);
+        String id3 = repository.createAccount("John", 100.2);
 
         //Verify
         Assertions.assertEquals(4, repository.getNumberOfAccounts());
@@ -55,6 +56,19 @@ public class AccountRepositoryTest {
         repository.deleteAccount(id0);
 
         Assertions.assertEquals(3, repository.getNumberOfAccounts());
+    }
+
+    @Test
+    void successfullNoRegisteredAccount() {
+        AccountRepository repository = new AccountRepository();
+
+        String id = repository.createAccount("Orvyl", 89.9);
+
+        Assertions.assertFalse( repository.noRegisteredAccount());
+
+        repository.deleteAccount(id);
+
+        Assertions.assertTrue( repository.noRegisteredAccount());
     }
 
 }
